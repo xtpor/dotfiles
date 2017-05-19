@@ -1,0 +1,8 @@
+[user]
+    name = Tintin Ho
+    email = holoktin97@gmail.com
+[alias]
+    lol = log --oneline --graph --decorate --all
+    st = status
+    br = branch
+    co = checkout

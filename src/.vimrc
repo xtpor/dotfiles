@@ -1,4 +1,4 @@
-" Vim configuration file
+" Vim configuration file by Tintin Ho
 " Please save this file as .vimrc in your home directory. (e.g. /home/user/.vimrc)
 set nocompatible
 filetype on
@@ -8,7 +8,7 @@ filetype off
 " --- Vundle Settings ---
 
 " Initialize vundle
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -92,6 +92,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set background=dark
 " colorscheme solarized
 colorscheme jellybeans
+" colorscheme twilight
 
 " font & size settings
 ":set guifont=Menlo\ Bold:h13
