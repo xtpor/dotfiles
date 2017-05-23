@@ -38,7 +38,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Oh-My-Zsh config
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/xtpor97/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # powerline tmux config
 export POWERLINE_ROOT="$HOME/Library/Python/2.7/lib/python/site-packages/powerline"
