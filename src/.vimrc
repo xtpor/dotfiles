@@ -43,7 +43,7 @@ Bundle 'davidhalter/jedi'
 Bundle 'davidhalter/jedi-vim'
 
 " General
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
@@ -178,3 +178,11 @@ autocmd FileType coffee.md runtime ftplugin/coffee.vim
 
 " Plugin Rust
 autocmd BufNewFile,BufRead *.rs set filetype=rust
+
+
+" vim powerline
+set laststatus=2
+set t_Co=256
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
