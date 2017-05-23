@@ -1,9 +1,17 @@
+
+# OS detection
+OS=`uname`
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # enable color on this terminal
 export CLICOLOR=1
 export TERM=xterm-256color
+
+# default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # vi key bindings
 # set -o vi
@@ -20,16 +28,20 @@ alias ll='ls -lG'
 export PATH="$HOME/.local/bin":$PATH
 export PATH="/usr/local/sbin":$PATH
 
-# Setting PATH for Python 2.7
-export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH="$HOME/Library/Python/2.7/bin:${PATH}"
+if [ "$OS" = "Darwin" ]; then
 
-# Setting PATH for Python 3.5
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+    # Setting PATH for Python 2.7
+    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    export PATH="$HOME/Library/Python/2.7/bin:${PATH}"
 
-# Setting PATH for ruby 2.3.3
-export PATH=/usr/local/Cellar/ruby/2.3.3/bin:$PATH
+    # Setting PATH for Python 3.5
+    PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+    export PATH
+
+    # Setting PATH for ruby 2.3.3
+    export PATH=/usr/local/Cellar/ruby/2.3.3/bin:$PATH
+
+fi
 
 # Setting PATH for Rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -41,8 +53,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 # powerline tmux config
-export POWERLINE_ROOT="$HOME/Library/Python/2.7/lib/python/site-packages/powerline"
-# export 
+if [ "$OS" = "Linux" ]; then
+    export POWERLINE_ROOT="$HOME/.local/lib/python2.7/site-packages/powerline"
+elif [ "$OS" = "Darwin" ]; then
+    export POWERLINE_ROOT="$HOME/Library/Python/2.7/lib/python/site-packages/powerline"
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
