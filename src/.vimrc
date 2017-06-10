@@ -42,6 +42,9 @@ Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi'
 Bundle 'davidhalter/jedi-vim'
 
+" Elixir
+Bundle 'elixir-lang/vim-elixir'
+
 " General
 " Bundle 'Lokaltog/vim-powerline'
 Bundle 'easymotion/vim-easymotion'
