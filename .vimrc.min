@@ -1,0 +1,32 @@
+" .vimrc.min
+" Mimimum vim configuration by Tintin Ho
+
+set nocompatible
+
+let mapleader = ','
+
+set number		   " Show line numbers
+set ruler          " Show the line and column number of the cursor position
+
+" indentation
+set autoindent	   " Copy indent from current line when starting a new line
+set smartindent	   " Do smart indenting when starting a new line. Works with supported c-like languages
+
+" searching
+set hlsearch	   " Highlight search results
+set ignorecase	   " When doing a search, ignore the case of letters
+set smartcase	   " Override the ignorecase option if the search pattern contains upper case letters
+
+syntax on          " auto highlight syntax
+
+:nnoremap <CR> :nohlsearch<CR>/<BS><CR>
+
+set backspace=indent,eol,start
+
+" auto complete ( [ {
+set sm
+
+" ;; can be used as esc key
+nnoremap ;; <ESC>
+vnoremap ;; <ESC>
+inoremap ;; <ESC>
