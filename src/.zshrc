@@ -41,6 +41,10 @@ if [ "$OS" = "Darwin" ]; then
     # Setting PATH for ruby 2.3.3
     export PATH=/usr/local/Cellar/ruby/2.3.3/bin:$PATH
 
+    # Setting PATH for icu4c
+    export PATH="/usr/local/opt/icu4c/bin:$PATH"
+    export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+
 fi
 
 # Setting PATH for Rust
@@ -138,3 +142,9 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

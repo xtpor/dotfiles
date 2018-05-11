@@ -10,52 +10,57 @@ filetype off
 " Initialize vundle
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Vim bundles install here
-" Color scheme
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
-Bundle 'phd'
-Bundle 'Guardian'
-Bundle 'twilight'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'Color-Scheme-Explorer'
-Bundle 'endel/vim-github-colorscheme'
+" Color scheme Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'twilight'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'joshdick/onedark.vim'
 
 " JS
-Bundle 'wookiehangover/jshint.vim'
-" Bundle 'pangloss/vim-javascript'
+Plugin 'posva/vim-vue'
+Plugin 'wookiehangover/jshint.vim'
+" Plugin 'pangloss/vim-javascript'
 
-" Ruby
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby' " Ruby
 
 " Coffee script
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'jwhitley/vim-literate-coffeescript'
+Plugin 'kchmck/vim-coffee-script'
+" Plugin 'jwhitley/vim-literate-coffeescript'
 
 " Rust
-Bundle 'rust-lang/rust.vim'
+Plugin 'rust-lang/rust.vim'
 
 " Python's
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi'
-Bundle 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
+" Plugin 'davidhalter/jedi'
+" Plugin 'davidhalter/jedi-vim'
 
 " Elixir
-Bundle 'elixir-lang/vim-elixir'
+Plugin 'elixir-lang/vim-elixir'
 
 " General
-" Bundle 'Lokaltog/vim-powerline'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'ervandew/supertab'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/nerdtree'
-Bundle 'itchyny/calendar.vim'
-Bundle 'jiangmiao/auto-pairs'
-" Bundle 'lrvick/Conque-Shell'
-" Bundle 'Conque-Shell'
-Bundle 'guozhaohui/conque'
+" Plugin 'Lokaltog/vim-powerline'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'ervandew/supertab'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'itchyny/calendar.vim'
+Plugin 'jiangmiao/auto-pairs'
+" Plugin 'lrvick/Conque-Shell'
+" Plugin 'Conque-Shell'
+Plugin 'guozhaohui/conque'
+
+" Fuzzy searching
+Plugin 'junegunn/fzf.vim'
+set rtp+=/usr/local/opt/fzf
+
+" Git plugin
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
  
 
 filetype plugin indent on
@@ -64,7 +69,7 @@ filetype plugin indent on
 " --- General Settings ---
 
 " set leader key
-let mapleader = ','
+let mapleader = ' '
 
 set number		   " Show line numbers
 set ruler          " Show the line and column number of the cursor position
@@ -118,6 +123,8 @@ nnoremap <F7> :w<CR>:!python %<CR>
 nnoremap <F8> :w<CR>:!kivy %<CR>
 nnoremap <F9> :Calendar<CR>
 
+nnoremap 11 :NERDTreeToggle<CR>
+
 " column ruler
 set colorcolumn=80
 
@@ -149,26 +156,26 @@ let NERDChristmasTree=1
 " Tagbar mapping
 
 " Plugin python-mode related
-let g:pymode=1
-let g:pymode_trim_whitespaces=1
-let g:pymode_indent=1
-let g:pymode_folding=1
-let g:pymode_motion=1
-let g:pymode_doc=0
-let g:pymode_rope=0
-let g:pymode_run=0
+"let g:pymode=1
+"let g:pymode_trim_whitespaces=1
+"let g:pymode_indent=1
+"let g:pymode_folding=1
+"let g:pymode_motion=1
+"let g:pymode_doc=0
+"let g:pymode_rope=0
+"let g:pymode_run=0
 
-let g:pymode_lint_on_fly = 1
-let g:pymode_lint_message = 1
+"let g:pymode_lint_on_fly = 1
+"let g:pymode_lint_message = 1
 
 " Plugin jedi mappings
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
+"let g:jedi#goto_command = "<leader>d"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = ""
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>r"
 
 " Plugin for jslint
 let JSHintUpdateWriteOnly=1
@@ -177,15 +184,18 @@ let JSHintUpdateWriteOnly=1
 let g:javascript_conceal_this = "@"
 
 " Plugin coffeescript
-autocmd FileType coffee.md runtime ftplugin/coffee.vim
+" autocmd FileType coffee.md runtime ftplugin/coffee.vim
 
 " Plugin Rust
 autocmd BufNewFile,BufRead *.rs set filetype=rust
+autocmd BufRead,BufNewFile *.vue set filetype=vue
 
 
 " vim powerline
-set laststatus=2
-set t_Co=256
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+if !has('nvim')
+    set laststatus=2
+    set t_Co=256
+    python from powerline.vim import setup as powerline_setup
+    python powerline_setup()
+    python del powerline_setup
+endif
