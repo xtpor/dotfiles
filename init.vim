@@ -1,7 +1,7 @@
+" Configuration for neovim by Tintin Ho (holoktin97@gmail.com)
 
-" by Tintin Ho (holoktin97@gmail.com)
-
-" Start of Plugins -- vim-plug (https://github.com/junegunn/vim-plug)
+" vim-plug (https://github.com/junegunn/vim-plug)
+" Start of Plugins
 call plug#begin('~/.vim/plugged')
 
 " General
@@ -26,6 +26,7 @@ Plug 'junegunn/seoul256.vim'
 " Language
 Plug 'elixir-lang/vim-elixir' " Elixir
 Plug 'jdonaldson/vaxe' " Haxe
+Plug 'dag/vim-fish' " fish script
 
 " End of plugins
 call plug#end()
