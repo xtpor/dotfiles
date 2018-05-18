@@ -4,75 +4,46 @@ set nocompatible
 filetype on
 filetype off
 
-
-" --- Vundle Settings ---
-
-" Initialize vundle
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-Plugin 'gmarik/vundle'
-
-" Vim bundles install here
-" Color scheme Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'twilight'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'joshdick/onedark.vim'
-
-" JS
-Plugin 'posva/vim-vue'
-Plugin 'wookiehangover/jshint.vim'
-" Plugin 'pangloss/vim-javascript'
-
-Plugin 'vim-ruby/vim-ruby' " Ruby
-
-" Coffee script
-Plugin 'kchmck/vim-coffee-script'
-" Plugin 'jwhitley/vim-literate-coffeescript'
-
-" Rust
-Plugin 'rust-lang/rust.vim'
-
-" Python's
-Plugin 'klen/python-mode'
-" Plugin 'davidhalter/jedi'
-" Plugin 'davidhalter/jedi-vim'
-
-" Elixir
-Plugin 'elixir-lang/vim-elixir'
+" vim-plug (https://github.com/junegunn/vim-plug)
+call plug#begin('~/.vim/plugged')
 
 " General
-" Plugin 'Lokaltog/vim-powerline'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'ervandew/supertab'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'itchyny/calendar.vim'
-Plugin 'jiangmiao/auto-pairs'
-" Plugin 'lrvick/Conque-Shell'
-" Plugin 'Conque-Shell'
-Plugin 'guozhaohui/conque'
+Plug 'tpope/vim-fugitive' " Git integration
+Plug 'scrooloose/nerdtree' " Tree view
+Plug 'tpope/vim-surround'
+Plug 'bling/vim-airline' " Status line
+Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'octref/rootignore'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
 
-" Fuzzy searching
-Plugin 'junegunn/fzf.vim'
-set rtp+=/usr/local/opt/fzf
+" Colorschemes
+Plug 'flazz/vim-colorschemes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'ajh17/spacegray.vim'
 
-" Git plugin
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
- 
+" Language
+Plug 'elixir-lang/vim-elixir'
+Plug 'jdonaldson/vaxe'
 
-filetype plugin indent on
+call plug#end()
 
 
 " --- General Settings ---
+filetype plugin indent on
 
 " set leader key
 let mapleader = ' '
 
 set number		   " Show line numbers
 set ruler          " Show the line and column number of the cursor position
+set colorcolumn=80 " column ruler
+set sm             " auto complete ( [ {
 
 " indentation
 set autoindent	   " Copy indent from current line when starting a new line
@@ -84,7 +55,6 @@ set ignorecase	   " When doing a search, ignore the case of letters
 set smartcase	   " Override the ignorecase option if the search pattern contains upper case letters
 
 syntax on          " auto highlight syntax
-"syntax enable
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
@@ -98,38 +68,16 @@ set tabstop=4 shiftwidth=4 expandtab
 
 " colorscheme settings
 set background=dark
-" colorscheme solarized
-colorscheme jellybeans
-" colorscheme twilight
+colorscheme onedark
 
 " font & size settings
-":set guifont=Menlo\ Bold:h13
-:set guifont=PT\ Mono\ Bold:h13
+:set guifont=Space\ Mono\ Bold:h13
 
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-
-" <F1> ~ <F9> mapping
-nnoremap <F1> :NERDTreeToggle<CR>
-nnoremap <F2> :TagbarToggle<CR>
-nnoremap <F3> :ConqueTerm bash<CR>
-nnoremap <F4> :w<CR>:!gcc % -o %:r<CR>:!./%:r<CR>
-nnoremap <F5> :w<CR>:!kivy %<CR>
-nnoremap <F6> :w<CR>:!python -i %<CR>
-nnoremap <F7> :w<CR>:!python %<CR>
-nnoremap <F8> :w<CR>:!kivy %<CR>
-nnoremap <F9> :Calendar<CR>
-
-nnoremap 11 :NERDTreeToggle<CR>
-
-" column ruler
-set colorcolumn=80
-
-" auto complete ( [ {
-set sm
 
 " ;; can be used as esc key
 nnoremap ;; <ESC>
@@ -145,57 +93,5 @@ set guioptions-=R
 " map :E to :Explore
 command! E Explore
 
-" // can be used to autocomplete
-inoremap // <C-P>
-
-" --- Plugin Specific Settings --- 
-
-" NerdTree mapping
-let NERDChristmasTree=1
-
-" Tagbar mapping
-
-" Plugin python-mode related
-"let g:pymode=1
-"let g:pymode_trim_whitespaces=1
-"let g:pymode_indent=1
-"let g:pymode_folding=1
-"let g:pymode_motion=1
-"let g:pymode_doc=0
-"let g:pymode_rope=0
-"let g:pymode_run=0
-
-"let g:pymode_lint_on_fly = 1
-"let g:pymode_lint_message = 1
-
-" Plugin jedi mappings
-"let g:jedi#goto_command = "<leader>d"
-"let g:jedi#goto_assignments_command = "<leader>g"
-"let g:jedi#goto_definitions_command = ""
-"let g:jedi#documentation_command = "K"
-"let g:jedi#usages_command = "<leader>n"
-"let g:jedi#completions_command = "<C-Space>"
-"let g:jedi#rename_command = "<leader>r"
-
-" Plugin for jslint
-let JSHintUpdateWriteOnly=1
-
-" Plugin vim-javascript
-let g:javascript_conceal_this = "@"
-
-" Plugin coffeescript
-" autocmd FileType coffee.md runtime ftplugin/coffee.vim
-
-" Plugin Rust
-autocmd BufNewFile,BufRead *.rs set filetype=rust
-autocmd BufRead,BufNewFile *.vue set filetype=vue
-
-
-" vim powerline
-if !has('nvim')
-    set laststatus=2
-    set t_Co=256
-    python from powerline.vim import setup as powerline_setup
-    python powerline_setup()
-    python del powerline_setup
-endif
+" custom key mappings
+nnoremap <leader>a :NERDTreeToggle<CR>
