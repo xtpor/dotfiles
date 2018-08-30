@@ -1,0 +1,7 @@
+#!/bin/sh
+# Unset symlink
+
+rm ~/.config/fish/config.fish
+rm ~/.config/nvim/init.vim
+rm ~/.gitconfig
+rm ~/.tmux.conf
