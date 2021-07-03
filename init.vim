@@ -16,6 +16,10 @@ Plug 'octref/rootignore'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
+Plug 'psliwka/vim-smoothie' " Smooth scrolling
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocomplete
+Plug 'dense-analysis/ale' " Linting & LSP support
 
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
@@ -27,9 +31,19 @@ Plug 'junegunn/seoul256.vim'
 Plug 'elixir-lang/vim-elixir' " Elixir
 Plug 'jdonaldson/vaxe' " Haxe
 Plug 'dag/vim-fish' " fish script
+Plug 'elmcast/elm-vim' " Elm
 
 " End of plugins
 call plug#end()
+
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Use ALE as completion sources for all code.
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 
 " General Setting
 let mapleader = " "
@@ -54,7 +68,7 @@ set fileencoding=utf-8
 
 " Tabs & Spaces
 set backspace=indent,eol,start
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 
 " Colorscheme
 color seoul256
@@ -79,5 +93,12 @@ nnoremap <leader>gs :Gstatus<CR>
 " NERDTree
 let loaded_netrwPlugin=1
 let NERDTreeRespectWildIgnore=1
+let NERDTreeShowHidden=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Mouse support
+set mouse=a
+
+" Ale elixir-ls config
+let g:ale_linters = {'elixir': ['elixir-ls', 'mix']}
+let g:ale_elixir_elixir_ls_release = expand('~/.share/elixir-ls-1.11')
