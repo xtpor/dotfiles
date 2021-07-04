@@ -31,19 +31,19 @@ export PATH="/usr/local/sbin":$PATH
 if [ "$OS" = "Darwin" ]; then
 
     # Setting PATH for Python 2.7
-    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-    export PATH="$HOME/Library/Python/2.7/bin:${PATH}"
+    # export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    # export PATH="$HOME/Library/Python/2.7/bin:${PATH}"
 
     # Setting PATH for Python 3.5
-    PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-    export PATH
+    # PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+    # export PATH
 
     # Setting PATH for ruby 2.3.3
-    export PATH=/usr/local/Cellar/ruby/2.3.3/bin:$PATH
+    # export PATH=/usr/local/Cellar/ruby/2.3.3/bin:$PATH
 
     # Setting PATH for icu4c
-    export PATH="/usr/local/opt/icu4c/bin:$PATH"
-    export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+    # export PATH="/usr/local/opt/icu4c/bin:$PATH"
+    # export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
 fi
 
