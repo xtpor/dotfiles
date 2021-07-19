@@ -1,4 +1,43 @@
 
+require("lspconfig").tsserver.setup{}
+
+
+-- EFM
+
+local eslint = {
+  lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {
+    "%f(%l,%c): %tarning %m",
+    "%f(%l,%c): %trror %m",
+  },
+}
+
+local languages = {
+  typescript = { eslint },
+  javascript = { eslint },
+  typescriptreact = { eslint },
+  javascriptreact = { eslint },
+}
+
+require("lspconfig").efm.setup {
+  filetypes = vim.tbl_keys(languages),
+  init_options = {documentFormatting = true, codeAction = true},
+  settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+}
+-- return {
+--   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+--   lintIgnoreExitCode = true,
+--   lintStdin = true,
+--   lintFormats = {"%f:%l:%c: %m"},
+-- }
+
+
+
+
+--[[
+
 local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
@@ -46,3 +85,4 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+--]]

@@ -10,8 +10,8 @@ return require("packer").startup(function()
   use "xuyuanp/nerdtree-git-plugin"
   use "bronson/vim-trailing-whitespace"
   -- use "itchyny/lightline.vim"               -- Status line
-  use 'airblade/vim-gitgutter'
-  use 'bling/vim-airline'                   -- Status line
+  use "airblade/vim-gitgutter"
+  use "bling/vim-airline"                   -- Status line
   use "lukas-reineke/indent-blankline.nvim" -- Indentation guide
   use "tpope/vim-commentary"
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
@@ -24,10 +24,13 @@ return require("packer").startup(function()
   use "ervandew/supertab"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "nvim-treesitter/playground"
-  use "dense-analysis/ale"
-  use { "Shougo/deoplete.nvim", run = ":UpdateRemotePlugins" }
+  -- use "dense-analysis/ale"
+  -- use { "Shougo/deoplete.nvim", run = ":UpdateRemotePlugins" }
   use "ap/vim-buftabline"
-  use 'wfxr/minimap.vim'
+  use "wfxr/minimap.vim"
+  use "neovim/nvim-lspconfig"
+  use "hrsh7th/nvim-compe"
+  use "alvan/vim-closetag"
 
   -- Colorschemes
   use "franbach/miramare"
