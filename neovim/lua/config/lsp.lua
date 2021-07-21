@@ -1,5 +1,5 @@
 
-require("lspconfig").tsserver.setup{}
+require("lspconfig").tsserver.setup {}
 
 
 -- EFM
@@ -26,6 +26,7 @@ require("lspconfig").efm.setup {
   init_options = {documentFormatting = true, codeAction = true},
   settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
 }
+
 -- return {
 --   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
 --   lintIgnoreExitCode = true,

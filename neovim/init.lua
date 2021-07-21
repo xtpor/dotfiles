@@ -17,7 +17,7 @@ vim.o.ignorecase = true     -- When doing a search, ignore the case of letters
 vim.o.smartcase = true      -- Override the ignorecase option if the search pattern contains upper case letters
 
 --- clear the search highlight by pressing ENTER when in Normal mode (Typing commands)
-vim.api.nvim_set_keymap("n", "<CR>", ":nohlsearch<CR>/<BS><CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<CR>", ":nohlsearch<CR>/<BS><CR>", { noremap = true, silent = true })
 
 -- Leader key
 vim.g.mapleader = " "
@@ -52,12 +52,14 @@ vim.cmd "colorscheme miramare"
 require("config/lsp")
 
 -- NERDTree shortcut
-vim.g.loaded_netrwPlugin = 1
-vim.g.NERDTreeRespectWildIgnore = 1
-vim.g.NERDTreeShowHidden = 1
-vim.cmd [[autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]]
-vim.api.nvim_set_keymap("n", "<leader>a", ":NERDTreeToggle<CR>", { noremap = true })
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.g.NERDTreeRespectWildIgnore = 1
+-- vim.g.NERDTreeShowHidden = 1
+-- vim.cmd [[autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif]]
+-- vim.api.nvim_set_keymap("n", "<leader>a", ":NERDTreeToggle<CR>", { noremap = true })
 
+-- nvim tree
+vim.api.nvim_set_keymap("n", "<leader>a", ":NvimTreeToggle<CR>:NvimTreeResize 30<CR>", { noremap = true, silent = true })
 
 --Map blankline
 vim.g.indent_blankline_char = '┊'
@@ -106,6 +108,8 @@ require('nvim-treesitter.configs').setup {
 -- Minimap
 vim.g.minimap_width = 10
 vim.g.minimap_auto_start = 1
+vim.g.minimap_auto_start_win_enter = 1
+vim.g.minimap_close_filetypes = {"NvimTree"}
 
 
 require("compe").setup {
@@ -142,3 +146,47 @@ require("compe").setup {
     luasnip = true;
   };
 }
+
+-- require("nvim-web-devicons").setup {
+--   default = true
+-- }
+
+function handle_close_buffer(b)
+  -- check is closing the focused buffer
+  if vim.api.nvim_eval [[ bufnr('%') ]] == b then
+    -- get count of all buffers
+    local c = vim.api.nvim_eval [[ len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) ]]
+    if c > 1 then
+      vim.cmd [[ bn ]]
+      vim.cmd [[ bd# ]]
+    else
+      vim.cmd [[ enew ]]
+      vim.cmd [[ bd# ]]
+    end
+  else
+    vim.cmd("bdelete! " .. b)
+  end
+end
+
+require("bufferline").setup {
+  options = {
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "left"
+      }
+    },
+    always_show_bufferline = true,
+    close_command = "lua handle_close_buffer(%d)",
+    right_mouse_command = nil,
+    middle_mouse_command = "lua handle_close_buffer(%d)",
+  }
+}
+
+function handle_before_window_close()
+  vim.cmd [[ MinimapClose ]]
+end
+
+vim.cmd [[ autocmd BufWinLeave * lua handle_before_window_close() ]]
+
